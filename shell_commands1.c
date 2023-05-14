@@ -33,8 +33,8 @@ int removeAlias(info_t *commandInfo, char *string)
 	ret = eraseNodeAtPosition(&(commandInfo->alias),
 	findNodeIndex(commandInfo->alias, startsWithNode
 	(commandInfo->alias, string, -1)));
-    *ptr = c;
-    return (ret);
+	*ptr = c;
+	return (ret);
 }
 
 /**
@@ -46,16 +46,16 @@ int removeAlias(info_t *commandInfo, char *string)
  */
 int createAlias(info_t *commandInfo, char *string)
 {
-    char *ptr;
+	char *ptr;
 
-    ptr = findCharacter(string, '=');
-    if (!ptr)
-        return (1);
-    if (!*++ptr)
-        return (removeAlias(commandInfo, string));
+	ptr = findCharacter(string, '=');
+	if (!ptr)
+		return (1);
+	if (!*++ptr)
+		return (removeAlias(commandInfo, string));
 
-    removeAlias(commandInfo, string);
-    return (insertNodeAtEnd(&(commandInfo->alias), string, 0) == NULL);
+	removeAlias(commandInfo, string);
+	return (insertNodeAtEnd(&(commandInfo->alias), string, 0) == NULL);
 }
 
 /**
@@ -66,19 +66,19 @@ int createAlias(info_t *commandInfo, char *string)
  */
 int displayAlias(list_t *node)
 {
-    char *ptr = NULL, *a = NULL;
+	char *ptr = NULL, *a = NULL;
 
-    if (node)
-    {
-        ptr = findCharacter(node->string, '=');
-        for (a = node->string; a <= ptr; a++)
-            printChar(*a);
-        printChar('\'');
-        _puts(ptr + 1);
-        _puts("'\n");
-        return (0);
-    }
-    return (1);
+	if (node)
+	{
+		ptr = findCharacter(node->string, '=');
+		for (a = node->string; a <= ptr; a++)
+			printChar(*a);
+		printChar('\'');
+		_puts(ptr + 1);
+		_puts("'\n");
+		return (0);
+	}
+	return (1);
 }
 
 /**
@@ -89,29 +89,29 @@ int displayAlias(list_t *node)
  */
 int aliasTable(info_t *commandInfo)
 {
-    int n = 0;
-    char *ptr = NULL;
-    list_t *node = NULL;
+	int n = 0;
+	char *ptr = NULL;
+	list_t *node = NULL;
 
-    if (commandInfo->argc == 1)
-    {
-        node = commandInfo->alias;
-        while (node)
-        {
-            displayAlias(node);
-            node = node->next;
-        }
-        return (0);
-    }
-    for (n = 1; commandInfo->argv[n]; n++)
-    {
-        ptr = findCharacter(commandInfo->argv[n], '=');
-        if (ptr)
-            createAlias(commandInfo, commandInfo->argv[n]);
-        else
-            displayAlias(startsWithNode(commandInfo->alias, commandInfo->argv[n], '='));
-    }
+	if (commandInfo->argc == 1)
+	{
+		node = commandInfo->alias;
+		while (node)
+		{
+			displayAlias(node);
+			node = node->next;
+		}
+		return (0);
+	}
+	for (n = 1; commandInfo->argv[n]; n++)
+	{
+		ptr = findCharacter(commandInfo->argv[n], '=');
+		if (ptr)
+			createAlias(commandInfo, commandInfo->argv[n]);
+		else
+			displayAlias(startsWithNode(commandInfo->alias, commandInfo->argv[n], '='));
+	}
 
-    return (0);
+	return (0);
 }
 
