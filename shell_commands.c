@@ -2,8 +2,8 @@
 
 /**
  * exitCommandInfo - This exits the shell
- * @commandInfo: A hypothetical argument structure is contained in the function, 
- *              which is used to keep the constant function prototype up to date.
+ * @commandInfo: A hypothetical argument structure is contained in the function
+ * which is used to keep the constant function prototype up to date.
  * Return: Return leaves the shell with the specified exit status.
  *          If commandInfo.argv[0] does not contain the word "exit," it returns 0.
  */
@@ -82,8 +82,8 @@ int cdInfo(info_t *commandInfo)
 
 /**
  * helpCommandInfo - Modifies the process's current directory
- * @commandInfo: Structure holding potential parameters. used to 
- *              keep up a prototype constant function. Always return 0 
+ * @commandInfo: Structure holding potential parameters. used to
+ * keep up a prototype constant function. Always return 0
  * Return: Always 0 if successful
  */
 int helpCommandInfo(info_t *commandInfo)
