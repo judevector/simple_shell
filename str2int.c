@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * isInteractive - returns true if shell is interactive mode
- * @commandInfo: address of the struct
+ * isInteractive - This returns true if shell is in interactive mode
+ * @commandInfo: address of the struct used in the program
  *
- * Return: 1 if the mode is interactive, 0 otherwise
+ * Return: 1 if the mode is in interactive, 0 otherwise
  */
 int isInteractive(info_t *commandInfo)
 {
@@ -12,15 +12,15 @@ int isInteractive(info_t *commandInfo)
 }
 
 /**
- * isDelimiter - determines whether a character is a delimeter
- * @c: The check char
+ * isDelimiter - This determines whether a character is a delimeter
+ * @zyk: The check the char used
  * @delimiter: the string for the delimeter
  * Return: if true, 1; if false, 0
  */
-int isDelimiter(char c, char *delimiter)
+int isDelimiter(char zyk, char *delimiter)
 {
     while (*delimiter)
-        if (*delimiter++ == c)
+        if (*delimiter++ == zyk)
         return (1);
     return (0);
 }
@@ -31,35 +31,35 @@ int isDelimiter(char c, char *delimiter)
  * Return: 1 if character c is alphabetic and 0 otherwise.
  */
 
-int isAlphabetic(int c)
+int isAlphabetic(int cha)
 {
-    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+    if ((cha >= 'a' && cha <= 'z') || (cha >= 'A' && cha <= 'Z'))
         return (1);
     else
         return (0);
 }
 
 /**
- * convertToInt - ransforms a string to an integer
- * @s: the string to be converted
- * Return: 0 if there are no numbers in the string, converted number else
+ * convertToInt - This converts a string to an integer
+ * @str: the string to be converted in the program
+ * Return: 0 if there are no numbers in the string, else return 1
  */
 
-int convertToInt(char *s)
+int convertToInt(char *str)
 {
     int i, sign = 1, flag = 0, output;
     unsigned int intResult = 0;
 
-    	for (i = 0; s[i] != '\0' && flag != 2; i++)
+    	for (i = 0; str[i] != '\0' && flag != 2; i++)
     	{
-        	if (s[i] == '-')
+        	if (str[i] == '-')
            	sign *= -1;
 
-        		if (s[i] >= '0' && s[i] <= '9')
+        		if (str[i] >= '0' && str[i] <= '9')
         		{
             		flag = 1;
             		intResult *= 10;
-            		intResult += (s[i] - '0');
+            		intResult += (str[i] - '0');
         		}
         	else if (flag == 1)
             	flag = 2;
