@@ -8,7 +8,7 @@
  */
 int isInteractive(info_t *commandInfo)
 {
-    return (isatty(STDIN_FILENO) && commandInfo->readfd <= 2);
+	return (isatty(STDIN_FILENO) && commandInfo->readfd <= 2);
 }
 
 /**
@@ -19,10 +19,10 @@ int isInteractive(info_t *commandInfo)
  */
 int isDelimiter(char zyk, char *delimiter)
 {
-    while (*delimiter)
-        if (*delimiter++ == zyk)
-        return (1);
-    return (0);
+	while (*delimiter)
+		if (*delimiter++ == zyk)
+			return (1);
+	return (0);
 }
 
 /**
@@ -33,10 +33,10 @@ int isDelimiter(char zyk, char *delimiter)
 
 int isAlphabetic(int cha)
 {
-    if ((cha >= 'a' && cha <= 'z') || (cha >= 'A' && cha <= 'Z'))
-        return (1);
-    else
-        return (0);
+	if ((cha >= 'a' && cha <= 'z') || (cha >= 'A' && cha <= 'Z'))
+		return (1);
+	else
+		return (0);
 }
 
 /**
@@ -47,29 +47,29 @@ int isAlphabetic(int cha)
 
 int convertToInt(char *str)
 {
-    int i, sign = 1, flag = 0, output;
-    unsigned int intResult = 0;
+	int i, sign = 1, flag = 0, output;
+	unsigned int intResult = 0;
 
-    	for (i = 0; str[i] != '\0' && flag != 2; i++)
-    	{
-        	if (str[i] == '-')
-           	sign *= -1;
+	for (i = 0; str[i] != '\0' && flag != 2; i++)
+	{
+		if (str[i] == '-')
+			sign *= -1;
 
-        		if (str[i] >= '0' && str[i] <= '9')
-        		{
-            		flag = 1;
-            		intResult *= 10;
-            		intResult += (str[i] - '0');
-        		}
-        	else if (flag == 1)
-            	flag = 2;
-    	}
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			flag = 1;
+			intResult *= 10;
+			intResult += (str[i] - '0');
+		}
+		else if (flag == 1)
+			flag = 2;
+	}
 
-    if (sign == -1)
-        output = -intResult;
-    else
-        output = intResult;
+	if (sign == -1)
+		output = -intResult;
+	else
+		output = intResult;
 
-    return (output);
+	return (output);
 }
 
