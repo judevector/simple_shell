@@ -2,10 +2,8 @@
 
 /**
  * shellExit - this shuts down the shell in the program
- * @commandInfo: the command info with possible arguments to keep the 
- prototype of the program function running.
- * Return: After leaving with the specified exit status 
- If info.argv[0]!= "exit", then the value is 0.
+ * @commandInfo: the command info with possible argument to run
+ * Return: After leaving with the specified exit status
  */
 int shellExit(info_t *commandInfo)
 {
@@ -31,8 +29,7 @@ if (commandInfo->argv[1])
 
 /**
  * changeDirectory - Changes the process's current directory
- * @commandInfo: the command info with possible arguments to keep the
- prototype of the program function running
+ * @commandInfo: the command info with possible arguments to run
  * Return: 0 is always.
  */
 int changeDirectory(info_t *commandInfo)
