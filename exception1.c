@@ -2,30 +2,30 @@
 
 /**
  * safeStringToInt - This converts a string to an integer safely
- * @s: the string to be converted to an integer
+ * @Is: the string to be converted to an integer
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
 int safeStringToInt(char *s)
 {
-    int i = 0;
-    unsigned long int intResult = 0;
+	int i = 0;
+	unsigned long int intResult = 0;
 
-    if (*s == '+')
-        s++; /* TODO: why does this make main return 255? */
-    for (i = 0; s[i] != '\0'; i++)
-    {
-        if (s[i] >= '0' && s[i] <= '9')
-        {
-            intResult *= 10;
-            intResult += (s[i] - '0');
-            if (intResult > INT_MAX)
-                return (-1);
-        }
-        else
-            return (-1);
-    }
-    return (intResult);
+	if (*s == '+')
+		s++; /* TODO: why does this make main return 255? */
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			intResult *= 10;
+			intResult += (s[i] - '0');
+			if (intResult > INT_MAX)
+				return (-1);
+		}
+		else
+			return (-1);
+	}
+	return (intResult);
 }
 
 /**
@@ -37,13 +37,13 @@ int safeStringToInt(char *s)
  */
 void printErr(info_t *commandInfo, char *err_string)
 {
-    errorPrintString(commandInfo->fileName);
-    errorPrintString(": ");
-    display_d(commandInfo->line_count, STDERR_FILENO);
-    errorPrintString(": ");
-    errorPrintString(commandInfo->argv[0]);
-    errorPrintString(": ");
-    errorPrintString(err_string);
+	errorPrintString(commandInfo->fileName);
+	errorPrintString(": ");
+	display_d(commandInfo->line_count, STDERR_FILENO);
+	errorPrintString(": ");
+	errorPrintString(commandInfo->argv[0]);
+	errorPrintString(": ");
+	errorPrintString(err_string);
 }
 
 /**
@@ -55,16 +55,16 @@ void printErr(info_t *commandInfo, char *err_string)
  */
 int display_d(int input, int fd)
 {
-    int (*_writeChar)(char) = _writeChar;
-    int i, count = 0;
-    unsigned int _abs_, current;
+	int (*_writeChar)(char) = _writeChar;
+	int i, count = 0;
+	unsigned int _abs_, current;
 
-    if (fd == STDERR_FILENO)
-        _writeChar = printErrorChar;
-    if (input < 0)
-    {
-        _abs_ = -input;
-        _writeChar('-');
+	if (fd == STDERR_FILENO)
+		_writeChar = printErrorChar;
+	if (input < 0)
+	{
+		_abs_ = -input;
+_writeChar('-');
         count++;
     }
     else
