@@ -61,7 +61,7 @@ int display_d(int input, int fd)
 
 	if (fd == STDERR_FILENO)
 		_writeChar = printErrorChar;
-	if (input < 0) 
+	if (input < 0)
 	{
 		_abs_ = -input;
 		_writeChar('-');
