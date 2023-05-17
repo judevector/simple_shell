@@ -7,8 +7,8 @@
  */
 int showEnv(info_t *commandInfo)
 {
-    printStrList(commandInfo->env);
-    return (0);
+	printStrList(commandInfo->env);
+	return (0);
 }
 
 /**
@@ -19,17 +19,17 @@ int showEnv(info_t *commandInfo)
  */
 char *fetchEnv(info_t *commandInfo, const char *name)
 {
-    list_n *node = commandInfo->env;
-    char *p;
+	list_n *node = commandInfo->env;
+	char *p;
 
-    while (node)
-    {
-	p = starts_with(node->str, name);
-			if (p && *p)
-				return (p);
-				node = node->next;
-    }
-    return (NULL);
+	while (node)
+	{
+		p = starts_with(node->str, name);
+		if (p && *p)
+			return (p);
+		node = node->next;
+	}
+	return (NULL);
 }
 
 /**
@@ -41,13 +41,13 @@ char *fetchEnv(info_t *commandInfo, const char *name)
 int updateEnv(info_t *commandInfo)
 {
 	if (commandInfo->argc != 3)
-    {
+	{
 		errorPrintString("Incorrect number of arguements\n");
-        return (1);
-   	}
-    if (setEnv(commandInfo, commandInfo->argv[1], commandInfo->argv[2]))
-        return (0);
-    return (1);
+		return (1);
+	}
+	if (setEnv(commandInfo, commandInfo->argv[1], commandInfo->argv[2]))
+		return (0);
+	return (1);
 }
 
 /**
@@ -57,17 +57,17 @@ int updateEnv(info_t *commandInfo)
  */
 int unsetEnv(info_t *commandInfo)
 {
-    int i;
+	int i;
 
-    if (commandInfo->argc == 1)
-    {
-        errorPrintString("Too few arguements.\n");
-        return (1);
-    }
-    for (i = 1; i <= commandInfo->argc; i++)
-        discardEnv(commandInfo, commandInfo->argv[i]);
+	if (commandInfo->argc == 1)
+	{
+		errorPrintString("Too few arguements.\n");
+		return (1);
+	}
+	for (i = 1; i <= commandInfo->argc; i++)
+		discardEnv(commandInfo, commandInfo->argv[i]);
 
-    return (0);
+	return (0);
 }
 
 /**
@@ -77,12 +77,12 @@ int unsetEnv(info_t *commandInfo)
  */
 int fillEnv(info_t *commandInfo)
 {
-    list_n *node = NULL;
-    size_t i;
+	list_n *node = NULL;
+	size_t i;
 
-    for (i = 0; environ[i]; i++)
-        appendNode(&node, environ[i], 0);
-    commandInfo->env = node;
-    return (0);
+	for (i = 0; environ[i]; i++)
+		appendNode(&node, environ[i], 0);
+	commandInfo->env = node;
+	return (0);
 }
 
