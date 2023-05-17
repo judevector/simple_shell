@@ -72,4 +72,3 @@ int convertToInt(char *str)
 
 	return (output);
 }
-
