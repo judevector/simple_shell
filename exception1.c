@@ -57,32 +57,32 @@ int display_d(int input, int fd)
 {
 	int (*_writeChar)(char) = _writeChar;
 	int i, count = 0;
-	unsigned int _abs_, current;
+	unsigned int __abs_, current;
 
 	if (fd == STDERR_FILENO)
 		_writeChar = printErrorChar;
-	if (input < 0)
+	if (input < 0) 
 	{
 		_abs_ = -input;
-_writeChar('-');
-        count++;
-    }
-    else
-        _abs_ = input;
-    current = _abs_;
-    for (i = 1000000000; i > 1; i /= 10)
-    {
-        if (_abs_ / i)
-        {
-            _writeChar('0' + current / i);
-            count++;
-        }
-        current %= i;
-    }
-    _writeChar('0' + current);
-    count++;
+		_writeChar('-');
+		count++;
+	}
+	else
+		_abs_ = input;
+	current = _abs_;
+	for (i = 1000000000; i > 1; i /= 10)
+	{
+		if (_abs_ / i)
+		{
+			_writeChar('0' + current / i);
+			count++;
+		}
+		current %= i;
+	}
+	_writeChar('0' + current);
+	count++;
 
-    return (count);
+	return (count);
 }
 
 /**
@@ -95,30 +95,29 @@ _writeChar('-');
  */
 char *convertNum(long int number, int base, int flags)
 {
-    static char *array;
-    static char buffer[50];
-    char flag = 0;
-    char *ptr;
-    unsigned long n = number;
+	static char *array;
+	static char buffer[50];
+	char flag = 0;
+	char *ptr;
+	unsigned long n = number;
 
-    if (!(flags & CONVERT_UNSIGNED) && number < 0)
-    {
-        n = -number;
-        flag = '-';
-    }
-    array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
-    ptr = &buffer[49];
-    *ptr = '\0';
+	if (!(flags & CONVERT_UNSIGNED) && number < 0)
+	{
+		n = -number;
+		flag = '-';
+	}
+	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	ptr = &buffer[49];
+	*ptr = '\0';
 
-    do
-    {
-        *--ptr = array[n % base];
-        n /= base;
-    } while (n != 0);
+	do {
+		*--ptr = array[n % base];
+		n /= base;
+	} while (n != 0);
 
-    if (flag)
-        *--ptr = flag;
-    return (ptr);
+	if (flag)
+		*--ptr = flag;
+	return (ptr);
 }
 
 /**
@@ -129,13 +128,12 @@ char *convertNum(long int number, int base, int flags)
  */
 void strip_comments(char *buf)
 {
-    int in;
+	int in;
 
-    for (in = 0; buf[in] != '\0'; in++)
-        if (buf[in] == '#' && (!in || buf[in - 1] == ' '))
-        {
-            buf[in] = '\0';
-            break;
-        }
+	for (in = 0; buf[in] != '\0'; in++)
+		if (buf[in] == '#' && (!in || buf[in - 1] == ' '))
+		{
+			buf[in] = '\0';
+			break;
+		}
 }
-
