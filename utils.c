@@ -17,7 +17,7 @@ if (commandInfo->argv[1])
 		if (check == -1)
 			{
             	commandInfo->status = 2;
-            	print_error(commandInfo, "Illegal number: ");
+            	printErr(commandInfo, "Illegal number: ");
             	errorPrintString(commandInfo->argv[1]);
             	printErrorChar('\n');
             	return (1);
@@ -68,7 +68,7 @@ int changeDirectory(info_t *commandInfo)
         chdir_rekt = chdir(commandInfo->argv[1]);
     if (chdir_rekt == -1)
     {
-        print_error(commandInfo, "can't cd to ");
+        printErr(commandInfo, "can't cd to ");
         errorPrintString(commandInfo->argv[1]), printErrorChar('\n');
     }
     else
