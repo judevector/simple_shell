@@ -42,7 +42,6 @@ void set_data(info_t *commandInfo, char **av)
         	apply_vars(commandInfo);
     	}
 }
-
 /**
  * clear_info - frees info_t struct fields used in the command
  * @commandInfo: struct address or information
@@ -53,22 +52,22 @@ void clear_info(info_t *commandInfo, int all)
     ffree(commandInfo->argv);
     commandInfo->argv = NULL;
     commandInfo->path = NULL;
-    	if (all)
-    	{
+    if (all)
+    {
         	if (!commandInfo->cmd_buf)
             	free(commandInfo->arg);
         	if (commandInfo->env)
-            	free_list(&(commandInfo->env));
+            	clear_list(&(commandInfo->env));
         	if (commandInfo->history)
-            	free_list(&(commandInfo->history));
+            	clear_list(&(commandInfo->history));
         	if (commandInfo->alias)
-            	free_list(&(commandInfo->alias));
-        ffree(commandInfo->environ);
-        commandInfo->environ = NULL;
-        bfree((void **)commandInfo->cmd_buf);
+            	clear_list(&(commandInfo->alias));
+        	ffree(commandInfo->environ);
+        	commandInfo->environ = NULL;
+        	bfree((void **)commandInfo->cmd_buf);
         	if (commandInfo->readfd > 2)
-            	close(commandInfo->readfd);
-        	writeChar(BUF_FLUSH);
-    	}
+           		close(commandInfo->readfd);
+        writeChar(BUF_FLUSH);
+    }
 }
 
