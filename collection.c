@@ -136,9 +136,9 @@ int eraseNodeAtIndex(list_n **head, unsigned int index)
 
 /**
  * clear_list - frees all nodes of a list
- * @head_ptr: address of pointer to head node
+ * @headPtr: address of pointer to head node in the program
  *
- * Return: void
+ * Return: void if nothing
  */
 void clear_list(list_n **headPtr)
 {
