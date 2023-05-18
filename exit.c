@@ -43,7 +43,7 @@ char *strnConcat(char *target, char *src, int n)
 	char *s = target;
 
 	l = 0;
-	j = 0;
+	m = 0;
 	while (target[l] != '\0')
 		l++;
 	while (src[m] != '\0' && m < n)

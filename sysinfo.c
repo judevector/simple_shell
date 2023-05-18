@@ -49,7 +49,7 @@ void set_data(info_t *commandInfo, char **av)
  */
 void clear_info(info_t *commandInfo, int all)
 {
-    ffree(commandInfo->argv);
+    dispose(commandInfo->argv);
     commandInfo->argv = NULL;
     commandInfo->path = NULL;
     if (all)
@@ -62,7 +62,7 @@ void clear_info(info_t *commandInfo, int all)
             	clear_list(&(commandInfo->history));
         	if (commandInfo->alias)
             	clear_list(&(commandInfo->alias));
-        	ffree(commandInfo->environ);
+        	dispose(commandInfo->environ);
         	commandInfo->environ = NULL;
         	bufferFree((void **)commandInfo->cmd_buf);
         	if (commandInfo->readfd > 2)

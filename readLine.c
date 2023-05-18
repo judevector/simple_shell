@@ -80,7 +80,7 @@ ssize_t read_input(info_t *commandInfo)
         }
 
         *buf_p = p;
-        return (_strlen(p));
+        return (str_length(p));
     }
 
     *buf_p = buf;

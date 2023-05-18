@@ -57,7 +57,7 @@ int display_d(int input, int fd)
 {
 	int (*_writeChar)(char) = _writeChar;
 	int i, count = 0;
-	unsigned int __abs_, current;
+	unsigned int _abs_, current;
 
 	if (fd == STDERR_FILENO)
 		_writeChar = printErrorChar;
