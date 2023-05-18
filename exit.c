@@ -9,25 +9,25 @@
  */
 char *strnCopy(char *target, char *src, int n)
 {
-    int i, j;
-    char *s = target;
+	int i, j;
+	char *s = target;
 
-    i = 0;
-    while (src[i] != '\0' && i < n - 1)
-    {
-        target[i] = src[i];
-        i++;
-    }
-    if (i < n)
-    {
-        j = i;
-        while (j < n)
-        {
-            target[j] = '\0';
-            j++;
-        }
-    }
-    return (s);
+	i = 0;
+	while (src[i] != '\0' && i < n - 1)
+	{
+		target[i] = src[i];
+		i++;
+	}
+	if (i < n)
+	{
+		j = i;
+		while (j < n)
+		{
+			target[j] = '\0';
+			j++;
+		}
+	}
+	return (s);
 }
 
 /**
@@ -39,22 +39,22 @@ char *strnCopy(char *target, char *src, int n)
  */
 char *strnConcat(char *target, char *src, int n)
 {
-    int l, m;
-    char *s = target;
+	int l, m;
+	char *s = target;
 
-    l = 0;
-    j = 0;
-    while (target[l] != '\0')
-        l++;
-    while (src[m] != '\0' && m < n)
-    {
-        target[l] = src[m];
-        l++;
-        m++;
-    }
-    if (m < n)
-        target[l] = '\0';
-    return (s);
+	l = 0;
+	j = 0;
+	while (target[l] != '\0')
+		l++;
+	while (src[m] != '\0' && m < n)
+	{
+		target[l] = src[m];
+		l++;
+		m++;
+	}
+	if (m < n)
+		target[l] = '\0';
+	return (s);
 }
 
 /**
@@ -65,12 +65,11 @@ char *strnConcat(char *target, char *src, int n)
  */
 char *findChar(char *s, char c)
 {
-    do
-    {
-        if (*s == c)
-            return (s);
-    } while (*s++ != '\0');
+	do {
+		if (*s == c)
+			return (s);
+	} while (*s++ != '\0');
 
-    return (NULL);
+	return (NULL);
 }
 
