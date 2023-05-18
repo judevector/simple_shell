@@ -2,7 +2,7 @@
 
 /**
  * safeStringToInt - This converts a string to an integer safely
- * @Is: the string to be converted to an integer
+ * @s: the string to be converted to an integer
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
