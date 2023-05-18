@@ -9,7 +9,7 @@ char **access_env(info_t *commandInfo)
 {
     if (!commandInfo->environ || commandInfo->envMutated)
     {
-        commandInfo->environ = list_to_strings(commandInfo->env);
+        commandInfo->environ = list2str(commandInfo->env);
         commandInfo->envMutated = 0;
     }
 
