@@ -17,7 +17,7 @@ list_n *push_node(list_n **head, const char *str, int num)
     nhead = malloc(sizeof(list_n));
     if (!nhead)
         return (NULL);
-    msetzero((void *)nhead, 0, sizeof(list_n));
+    resetMatrix((void *)nhead, 0, sizeof(list_n));
     nhead->num = num;
     if (str)
     {
@@ -52,7 +52,7 @@ list_n *appendNode(list_n **head, const char *str, int num)
     new_node = malloc(sizeof(list_n));
     if (!new_node)
         return (NULL);
-    msetzero((void *)new_node, 0, sizeof(list_n));
+    resetMatrix((void *)new_node, 0, sizeof(list_n));
     new_node->num = num;
     if (str)
     {
