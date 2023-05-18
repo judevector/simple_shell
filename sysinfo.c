@@ -64,7 +64,7 @@ void clear_info(info_t *commandInfo, int all)
             	clear_list(&(commandInfo->alias));
         	ffree(commandInfo->environ);
         	commandInfo->environ = NULL;
-        	bfree((void **)commandInfo->cmd_buf);
+        	bufferFree((void **)commandInfo->cmd_buf);
         	if (commandInfo->readfd > 2)
            		close(commandInfo->readfd);
         writeChar(BUF_FLUSH);
