@@ -5,32 +5,31 @@
  * @head: address of pointer to head node in the program
  * @str: the string field of node
  * @num: node index used by history
- *
  * Return: size of list else nothing on failure
  */
 list_n *push_node(list_n **head, const char *str, int num)
 {
-    list_n *nhead;
+	list_n *nhead;
 
-    if (!head)
-        return (NULL);
-    nhead = malloc(sizeof(list_n));
-    if (!nhead)
-        return (NULL);
-    resetMatrix((void *)nhead, 0, sizeof(list_n));
-    nhead->num = num;
-    if (str)
-    {
-        nhead->str = strdupl(str);
-        if (!nhead->str)
-        {
-            free(nhead);
-            return (NULL);
-        }
-    }
-    nhead->next = *head;
-    *head = nhead;
-    return (nhead);
+	if (!head)
+		return (NULL);
+	nhead = malloc(sizeof(list_n));
+	if (!nhead)
+		return (NULL);
+	resetMatrix((void *)nhead, 0, sizeof(list_n));
+	nhead->num = num;
+	if (str)
+	{
+		nhead->str = strdupl(str);
+		if (!nhead->str)
+		{
+			free(nhead);
+			return (NULL);
+		}
+	}
+	nhead->next = *head;
+	*head = nhead;
+	return (nhead);
 }
 
 /**
@@ -43,35 +42,35 @@ list_n *push_node(list_n **head, const char *str, int num)
  */
 list_n *appendNode(list_n **head, const char *str, int num)
 {
-    list_n *new_node, *node;
+	list_n *new_node, *node;
 
-    if (!head)
-        return (NULL);
+	if (!head)
+		return (NULL);
 
-    node = *head;
-    new_node = malloc(sizeof(list_n));
-    if (!new_node)
-        return (NULL);
-    resetMatrix((void *)new_node, 0, sizeof(list_n));
-    new_node->num = num;
-    if (str)
-    {
-        new_node->str = strdupl(str);
-        if (!new_node->str)
-        {
-            free(new_node);
-            return (NULL);
-        }
-    }
-    if (node)
-    {
-        while (node->next)
-            node = node->next;
-        node->next = new_node;
-    }
-    else
-        *head = new_node;
-    return (new_node);
+	node = *head;
+	new_node = malloc(sizeof(list_n));
+	if (!new_node)
+		return (NULL);
+	resetMatrix((void *)new_node, 0, sizeof(list_n));
+	new_node->num = num;
+	if (str)
+	{
+		new_node->str = strdupl(str);
+		if (!new_node->str)
+		{
+			free(new_node);
+			return (NULL);
+		}
+	}
+	if (node)
+	{
+		while (node->next)
+			node = node->next;
+		node->next = new_node;
+	}
+	else
+		*head = new_node;
+	return (new_node);
 }
 
 /**
@@ -82,16 +81,16 @@ list_n *appendNode(list_n **head, const char *str, int num)
  */
 size_t printStrList(const list_n *h)
 {
-    size_t i = 0;
+	size_t i = 0;
 
-    while (h)
-    {
-        printString(h->str ? h->str : "(nil)");
-        printString("\n");
-        h = h->next;
-        i++;
-    }
-    return (i);
+	while (h)
+	{
+		printString(h->str ? h->str : "(nil)");
+		printString("\n");
+		h = h->next;
+		i++;
+	}
+	return (i);
 }
 
 /**
@@ -103,35 +102,35 @@ size_t printStrList(const list_n *h)
  */
 int eraseNodeAtIndex(list_n **head, unsigned int index)
 {
-    list_n *node, *prevPtr;
-    unsigned int i = 0;
+	list_n *node, *prevPtr;
+	unsigned int i = 0;
 
-    if (!head || !*head)
-        return (0);
+	if (!head || !*head)
+		return (0);
 
-    if (!index)
-    {
-        node = *head;
-        *head = (*head)->next;
-        free(node->str);
-        free(node);
-        return (1);
-    }
-    node = *head;
-    while (node)
-    {
-        if (i == index)
-        {
-            prevPtr->next = node->next;
-            free(node->str);
-            free(node);
-            return (1);
-        }
-        i++;
-        prevPtr = node;
-        node = node->next;
-    }
-    return (0);
+	if (!index)
+	{
+		node = *head;
+		*head = (*head)->next;
+		free(node->str);
+		free(node);
+		return (1);
+	}
+	node = *head;
+	while (node)
+	{
+		if (i == index)
+		{
+			prevPtr->next = node->next;
+			free(node->str);
+			free(node);
+			return (1);
+		}
+		i++;
+		prevPtr = node;
+		node = node->next;
+	}
+	return (0);
 }
 
 /**
@@ -142,19 +141,19 @@ int eraseNodeAtIndex(list_n **head, unsigned int index)
  */
 void clear_list(list_n **headPtr)
 {
-    list_n *node, *next_node, *head;
+	list_n *node, *next_node, *head;
 
-    if (!headPtr || !*headPtr)
-        return;
-    head = *headPtr;
-    node = head;
-    while (node)
-    {
-        next_node = node->next;
-        free(node->str);
-        free(node);
-        node = next_node;
-    }
-    *headPtr = NULL;
+	if (!headPtr || !*headPtr)
+		return;
+	head = *headPtr;
+	node = head;
+	while (node)
+	{
+		next_node = node->next;
+		free(node->str);
+		free(node);
+		node = next_node;
+	}
+	*headPtr = NULL;
 }
 
