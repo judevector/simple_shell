@@ -15,7 +15,7 @@ size_t get_length(const list_n *h)
 		h = h->next;
 		i++;
 	}
-    return (i);
+	return (i);
 }
 
 /**
@@ -26,32 +26,32 @@ size_t get_length(const list_n *h)
  */
 char **list2str(list_n *head)
 {
-    list_n *node = head;
-    size_t i = get_length(head), j;
-    char **strs;
-    char *str;
+	list_n *node = head;
+	size_t i = get_length(head), j;
+	char **strs;
+	char *str;
 
-    if (!head || !i)
-        return (NULL);
-    strs = malloc(sizeof(char *) * (i + 1));
-    if (!strs)
-        return (NULL);
-    for (i = 0; node; node = node->next, i++)
-    {
-        str = malloc(str_length(node->str) + 1);
-        	if (!str)
-        	{
-            	for (j = 0; j < i; j++)
-                	free(strs[j]);
-            	free(strs);
-            	return (NULL);
-        	}
+	if (!head || !i)
+		return (NULL);
+	strs = malloc(sizeof(char *) * (i + 1));
+	if (!strs)
+		return (NULL);
+	for (i = 0; node; node = node->next, i++)
+	{
+		str = malloc(str_length(node->str) + 1);
+		if (!str)
+		{
+			for (j = 0; j < i; j++)
+				free(strs[j]);
+			free(strs);
+			return (NULL);
+		}
 
-        str = str_copy(str, node->str);
-        strs[i] = str;
-    }
-    strs[i] = NULL;
-    return (strs);
+		str = str_copy(str, node->str);
+		strs[i] = str;
+	}
+	strs[i] = NULL;
+	return (strs);
 }
 
 /**
@@ -62,19 +62,19 @@ char **list2str(list_n *head)
  */
 size_t listPrint(const list_n *h)
 {
-    size_t i = 0;
+	size_t i = 0;
 
-    while (h)
-    {
-        printString(convertNum(h->num, 10, 0));
-        writeChar(':');
-        writeChar(' ');
-        printString(h->str ? h->str : "(nil)");
-        printString("\n");
-        h = h->next;
-        i++;
-    }
-    return (i);
+	while (h)
+	{
+		printString(convertNum(h->num, 10, 0));
+		writeChar(':');
+		writeChar(' ');
+		printString(h->str ? h->str : "(nil)");
+		printString("\n");
+		h = h->next;
+		i++;
+	}
+	return (i);
 }
 
 /**
@@ -87,16 +87,16 @@ size_t listPrint(const list_n *h)
  */
 list_n *startsWith(list_n *node, char *prefix, char c)
 {
-    char *p = NULL;
+	char *p = NULL;
 
-    while (node)
-    {
-        p = starts_with(node->str, prefix);
-        	if (p && ((c == -1) || (*p == c)))
-            	return (node);
-        	node = node->next;
-    }
-    return (NULL);
+	while (node)
+	{
+		p = starts_with(node->str, prefix);
+		if (p && ((c == -1) || (*p == c)))
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
 }
 
 /**
@@ -108,15 +108,14 @@ list_n *startsWith(list_n *node, char *prefix, char c)
  */
 ssize_t findNodeIndex(list_n *header, list_n *node)
 {
-    size_t i = 0;
+	size_t i = 0;
 
-    	while (header)
-    	{
-        	if (header == node)
-            	return (i);
-        	header = header->next;
-        	i++;
-    	}
-    	return (-1);
+	while (header)
+	{
+		if (header == node)
+			return (i);
+		header = header->next;
+		i++;
+	}
+	return (-1);
 }
-
