@@ -98,7 +98,6 @@ typedef struct passinfo
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 		0, 0, 0}
 
-
 /**
  * struct builtin - contains a builtin string and related function
  * @type: the builtin command flag
@@ -112,9 +111,9 @@ typedef struct builtin
 
 /* toem_shloop.c */
 int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int detect_builtin(info_t *);
+void detect_cmd(info_t *);
+void spawn_cmd(info_t *);
 
 /* toem_parser.c */
 int isCmd(info_t *, char *);
@@ -149,7 +148,7 @@ char *findChar(char *, char);
 
 /* toem_tokenizer.c */
 char **word_split(char *, char *);
-char **strtow2(char *, char);
+char **extract_words(char *, char);
 
 /* toem-reallocate.c */
 char *resetMatrix(char *, char, unsigned int);
