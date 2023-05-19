@@ -75,12 +75,12 @@ list_n *appendNode(list_n **head, const char *str, int num)
 }
 
 /**
- * listPrint - This prints only the string element of a list_n linked list
+ * printStrList - This prints only the string element of a list_n linked list
  * @h: pointer to first node in the program
  *
  * Return: size of list
  */
-size_t listPrint(const list_n *h)
+size_t printStrList(const list_n *h)
 {
     size_t i = 0;
 
