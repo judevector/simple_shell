@@ -7,13 +7,13 @@
  */
 char **access_env(info_t *commandInfo)
 {
-    if (!commandInfo->environ || commandInfo->envMutated)
-    {
-        commandInfo->environ = list2str(commandInfo->env);
-        commandInfo->envMutated = 0;
-    }
+	if (!commandInfo->environ || commandInfo->envMutated)
+	{
+		commandInfo->environ = list2str(commandInfo->env);
+		commandInfo->envMutated = 0;
+	}
 
-    return (commandInfo->environ);
+	return (commandInfo->environ);
 }
 
 /**
@@ -24,27 +24,27 @@ char **access_env(info_t *commandInfo)
  */
 int discardEnv(info_t *commandInfo, char *var)
 {
-    list_n *node = commandInfo->env;
-    size_t i = 0;
-    char *p;
+	list_n *node = commandInfo->env;
+	size_t i = 0;
+	char *p;
 
-    if (!node || !var)
-        return (0);
+	if (!node || !var)
+		return (0);
 
-    while (node)
-    {
-        p = starts_with(node->str, var);
-        	if (p && *p == '=')
-        	{
-            	commandInfo->envMutated = eraseNodeAtIndex(&(commandInfo->env), i);
-            	i = 0;
-            	node = commandInfo->env;
-            	continue;
-        	}
-        node = node->next;
-        i++;
-    }
-    return (commandInfo->envMutated);
+	while (node)
+	{
+		p = starts_with(node->str, var);
+		if (p && *p == '=')
+		{
+			commandInfo->envMutated = eraseNodeAtIndex(&(commandInfo->env), i);
+			i = 0;
+			node = commandInfo->env;
+			continue;
+		}
+		node = node->next;
+		i++;
+	}
+	return (commandInfo->envMutated);
 }
 
 /**
@@ -57,35 +57,36 @@ int discardEnv(info_t *commandInfo, char *var)
  */
 int setEnv(info_t *commandInfo, char *var, char *value)
 {
-    char *buf = NULL;
-    list_n *node;
-    char *p;
+	char *buf = NULL;
+	list_n *node;
+	char *p;
 
-    if (!var || !value)
-        return (0);
+	if (!var || !value)
 
-    buf = malloc(str_length(var) + str_length(value) + 2);
-    if (!buf)
-        return (1);
-    str_copy(buf, var);
-    str_concat(buf, "=");
-    str_concat(buf, value);
-    node = commandInfo->env;
-    while (node)
-    {
-        p = starts_with(node->str, var);
-        	if (p && *p == '=')
-        	{
-            	free(node->str);
-            	node->str = buf;
-            	commandInfo->envMutated = 1;
-            	return (0);
-        	}
-        node = node->next;
-    }
-    appendNode(&(commandInfo->env), buf, 0);
-    free(buf);
-    commandInfo->envMutated = 1;
-    return (0);
+		return (0);
+
+	buf = malloc(str_length(var) + str_length(value) + 2);
+	if (!buf)
+		return (1);
+	str_copy(buf, var);
+	str_concat(buf, "=");
+	str_concat(buf, value);
+	node = commandInfo->env;
+	while (node)
+	{
+		p = starts_with(node->str, var);
+		if (p && *p == '=')
+		{
+			free(node->str);
+			node->str = buf;
+			commandInfo->envMutated = 1;
+			return (0);
+		}
+		node  = node->next;
+	}
+
+	appendNode(&(commandInfo->env), buf, 0);
+	free(buf);
+	commandInfo->envMutated = 1;
+	return (0);
 }
-
