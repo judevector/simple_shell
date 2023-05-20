@@ -8,8 +8,8 @@
  */
 int showHistory(info_t *commandInfo)
 {
-    listPrint(commandInfo->history);
-    return (0);
+	listPrint(commandInfo->history);
+	return (0);
 }
 
 /**
@@ -20,18 +20,18 @@ int showHistory(info_t *commandInfo)
  */
 int removeAlias(info_t *commandInfo, char *str)
 {
-    char *p, c;
-    int ret;
+	char *p, c;
+	int ret;
 
-    p = findChar(str, '=');
-    if (!p)
-        return (1);
-    c = *p;
-    *p = 0;
-    ret = eraseNodeAtIndex(&(commandInfo->alias),
-                               findNodeIndex(commandInfo->alias, startsWith(commandInfo->alias, str, -1)));
-    *p = c;
-    return (ret);
+	p = findChar(str, '=');
+	if (!p)
+		return (1);
+	c = *p;
+	*p = 0;
+	ret = eraseNodeAtIndex(&(commandInfo->alias),
+			findNodeIndex(commandInfo->alias, startsWith(commandInfo->alias, str, -1)));
+	*p = c;
+	return (ret);
 }
 
 /**
@@ -43,16 +43,16 @@ int removeAlias(info_t *commandInfo, char *str)
  */
 int addAlias(info_t *commandInfo, char *str)
 {
-    char *p;
+	char *p;
 
-    p = findChar(str, '=');
-    if (!p)
-        return (1);
-    if (!*++p)
-        return (removeAlias(commandInfo, str));
+	p = findChar(str, '=');
+	if (!p)
+		return (1);
+	if (!*++p)
+		return (removeAlias(commandInfo, str));
 
-    removeAlias(commandInfo, str);
-    return (appendNode(&(commandInfo->alias), str, 0) == NULL);
+	removeAlias(commandInfo, str);
+	return (appendNode(&(commandInfo->alias), str, 0) == NULL);
 }
 
 /**
@@ -63,19 +63,19 @@ int addAlias(info_t *commandInfo, char *str)
  */
 int showAlias(list_n *node)
 {
-    char *p = NULL, *a = NULL;
+	char *p = NULL, *a = NULL;
 
-    if (node)
-    {
-        p = findChar(node->str, '=');
-        	for (a = node->str; a <= p; a++)
-            	writeChar(*a);
-        	writeChar('\'');
-        	printString(p + 1);
-        	printString("'\n");
-        	return (0);
-    }
-    return (1);
+	if (node)
+	{
+		p = findChar(node->str, '=');
+		for (a = node->str; a <= p; a++)
+			writeChar(*a);
+		writeChar('\'');
+		printString(p + 1);
+		printString("'\n");
+		return (0);
+	}
+	return (1);
 }
 
 /**
@@ -85,29 +85,29 @@ int showAlias(list_n *node)
  */
 int manageAlias(info_t *commandInfo)
 {
-    int i = 0;
-    char *p = NULL;
-    list_n *node = NULL;
+	int i = 0;
+	char *p = NULL;
+	list_n *node = NULL;
 
-    if (commandInfo->argc == 1)
-    {
-        node = commandInfo->alias;
-        	while (node)
-        	{
-            	showAlias(node);
-            	node = node->next;
-        	}
-        return (0);
-    }
-    for (i = 1; commandInfo->argv[i]; i++)
-    {
-        p = findChar(commandInfo->argv[i], '=');
-        	if (p)
-            	addAlias(commandInfo, commandInfo->argv[i]);
-        	else
-            	showAlias(startsWith(commandInfo->alias, commandInfo->argv[i], '='));
-    }
+	if (commandInfo->argc == 1)
+	{
+		node = commandInfo->alias;
+		while (node)
+		{
+			showAlias(node);
+			node = node->next;
+		}
+		return (0);
+	}
+	for (i = 1; commandInfo->argv[i]; i++)
+	{
+		p = findChar(commandInfo->argv[i], '=');
+		if (p)
+			addAlias(commandInfo, commandInfo->argv[i]);
+		else
+			showAlias(startsWith(commandInfo->alias, commandInfo->argv[i], '='));
+	}
 
-    return (0);
+	return (0);
 }
 
