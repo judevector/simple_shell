@@ -44,9 +44,9 @@ extern char **environ;
  */
 typedef struct liststr
 {
-    int num;
-    char *str;
-    struct liststr *next;
+	int num;
+	char *str;
+	struct liststr *next;
 } list_n;
 
 /**
@@ -73,25 +73,25 @@ typedef struct liststr
  */
 typedef struct passinfo
 {
-    char *arg;
-    char **argv;
-    char *path;
-    int argc;
-    unsigned int line_count;
-    int err_num;
-    int linecount;
-    char *fileName;
-    list_n *env;
-    list_n *history;
-    list_n *alias;
-    char **environ;
-    int envMutated;
-    int status;
+	char *arg;
+	char **argv;
+	char *path;
+	int argc;
+	unsigned int line_count;
+	int err_num;
+	int linecount;
+	char *fileName;
+	list_n *env;
+	list_n *history;
+	list_n *alias;
+	char **environ;
+	int envMutated;
+	int status;
 
-    char **cmd_buf;   /* pointer to cmd ; chain buffer, for memory mangement */
-    int cmd_buf_type; /* CMD_type ||, &&, ; */
-    int readfd;
-    int history_count;
+	char **cmd_buf;   /* pointer to cmd ; chain buffer, for memory mangement */
+	int cmd_buf_type; /* CMD_type ||, &&, ; */
+	int readfd;
+	int history_count;
 } info_t;
 
 #define INFO_INIT \
@@ -105,8 +105,8 @@ typedef struct passinfo
  */
 typedef struct builtin
 {
-    char *type;
-    int (*func)(info_t *);
+	char *type;
+	int (*func)(info_t *);
 } builtin_table;
 
 /* toem_shloop.c */
