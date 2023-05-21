@@ -96,7 +96,8 @@ void detect_cmd(info_t *commandInfo)
 			k++;
 	if (!k)
 		return;
-	path = searchPath(commandInfo, fetchEnv(commandInfo, "PATH="), commandInfo->argv[0]);
+	path = searchPath(commandInfo, fetchEnv(commandInfo, "PATH="),
+	commandInfo->argv[0]);
 	if (path)
 	{
 		commandInfo->path = path;
@@ -104,7 +105,8 @@ void detect_cmd(info_t *commandInfo)
 	}
 	else
 	{
-		if ((isInteractive(commandInfo) || fetchEnv(commandInfo, "PATH=") || commandInfo->argv[0][0] == '/') && isCmd(commandInfo, commandInfo->argv[0]))
+		if ((isInteractive(commandInfo) || fetchEnv(commandInfo, "PATH=") ||
+		commandInfo->argv[0][0] == '/') && isCmd(commandInfo, commandInfo->argv[0]))
 			spawn_cmd(commandInfo);
 		else if (*(commandInfo->arg) != '\n')
 		{
@@ -122,25 +124,24 @@ void detect_cmd(info_t *commandInfo)
  */
 void spawn_cmd(info_t *commandInfo)
 {
-	pid_t child_pid;
+i	pid_t child_pid;
 
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-        /* TODO: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
 	if (child_pid == 0)
 	{
-		if (execve(commandInfo->path, commandInfo->argv, access_env(commandInfo)) == -1)
+		if (execve(commandInfo->path, commandInfo->argv,
+		access_env(commandInfo)) == -1)
 		{
 			clear_info(commandInfo, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
 		}
-        /* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{
