@@ -15,7 +15,7 @@ if (commandInfo->argv[1])
 			if (check == -1)
 			{
 				commandInfo->status = 2;
-				printErr(commandInfo, "Illegal number: ")
+				printErr(commandInfo, "Illegal number: ");
 					errorPrintString(commandInfo->argv[1]);
 				printErrorChar('\n');
 				return (1);
