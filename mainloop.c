@@ -93,7 +93,7 @@ void detect_cmd(info_t *commandInfo)
 	}
 	for (i = 0, k = 0; commandInfo->arg[i]; i++)
 		if (!isDelimiter(commandInfo->arg[i], " \t\n"))
-			k++;
+		k++;
 	if (!k)
 		return;
 	path = searchPath(commandInfo, fetchEnv(commandInfo, "PATH="),
@@ -124,7 +124,7 @@ void detect_cmd(info_t *commandInfo)
  */
 void spawn_cmd(info_t *commandInfo)
 {
-i	pid_t child_pid;
+	pid_t child_pid;
 
 	child_pid = fork();
 	if (child_pid == -1)
