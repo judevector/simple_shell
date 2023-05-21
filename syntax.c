@@ -9,17 +9,17 @@
  */
 int isCmd(info_t *commandInfo, char *path)
 {
-    struct stat st;
+	struct stat st;
 
-    (void)commandInfo;
-    if (!path || stat(path, &st))
-        return (0);
+	(void)commandInfo;
+	if (!path || stat(path, &st))
+		return (0);
 
-    if (st.st_mode & S_IFREG)
-    {
-        return (1);
-    }
-    return (0);
+	if (st.st_mode & S_IFREG)
+	{
+		return (1);
+	}
+	return (0);
 }
 
 /**
@@ -32,14 +32,14 @@ int isCmd(info_t *commandInfo, char *path)
  */
 char *dupCharList(char *pathText, int start, int stop)
 {
-    static char buf[1024];
-    int i = 0, k = 0;
+	static char buf[1024];
+	int i = 0, k = 0;
 
-    for (k = 0, i = start; i < stop; i++)
-        if (pathText[i] != ':')
-            buf[k++] = pathText[i];
-    buf[k] = 0;
-    return (buf);
+	for (k = 0, i = start; i < stop; i++)
+		if (pathText[i] != ':')
+			buf[k++] = pathText[i];
+	buf[k] = 0;
+	return (buf);
 }
 
 /**
@@ -52,36 +52,36 @@ char *dupCharList(char *pathText, int start, int stop)
  */
 char *searchPath(info_t *commandInfo, char *pathText, char *cmd)
 {
-    int i = 0, curr_pos = 0;
-    char *path;
+	int i = 0, curr_pos = 0;
+	char *path;
 
-    if (!pathText)
-        return (NULL);
-    if ((str_length(cmd) > 2) && starts_with(cmd, "./"))
-    {
-        if (isCmd(commandInfo, cmd))
-            return (cmd);
-    }
-    while (1)
-    {
-        if (!pathText[i] || pathText[i] == ':')
-        {
-            path = dupCharList(pathText, curr_pos, i);
-            if (!*path)
-                str_concat(path, cmd);
-            else
-            {
-                str_concat(path, "/");
-                str_concat(path, cmd);
-            }
-            if (isCmd(commandInfo, path))
-                return (path);
-            if (!pathText[i])
-                break;
-            curr_pos = i;
-        }
-        i++;
-    }
-    return (NULL);
+	if (!pathText)
+		return (NULL);
+	if ((str_length(cmd) > 2) && starts_with(cmd, "./"))
+	{
+		if (isCmd(commandInfo, cmd))
+			return (cmd);
+	}
+	while (1)
+	{
+		if (!pathText[i] || pathText[i] == ':')
+		{
+			path = dupCharList(pathText, curr_pos, i);
+			if (!*path)
+				str_concat(path, cmd);
+			else
+			{
+				str_concat(path, "/");
+				str_concat(path, cmd);
+			}
+			if (isCmd(commandInfo, path))
+				return (path);
+			if (!pathText[i])
+				break;
+			curr_pos = i;
+		}
+		i++;
+	}
+	return (NULL);
 }
 
