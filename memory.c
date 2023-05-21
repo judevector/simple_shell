@@ -8,12 +8,12 @@
  */
 int bufferFree(void **data)
 {
-    if (data && *data)
-    {
-        free(*data);
-        *data = NULL;
-        return (1);
-    }
-    return (0);
+	if (data && *data)
+	{
+		free(*data);
+		*data = NULL;
+		return (1);
+	}
+	return (0);
 }
 
