@@ -19,7 +19,7 @@ size_t get_length(const list_n *h)
 }
 
 /**
- * list_to_strings - returns an array of strings of the list->str
+ * list2str - This returns an array of strings of the list->str
  * @head: pointer to first node
  *
  * Return: array of strings of the list->str
@@ -78,7 +78,7 @@ size_t listPrint(const list_n *h)
 }
 
 /**
- * startsWith - returns node whose string starts with prefix in the given string
+ * startsWith - The string starts with prefix in the command
  * @node: pointer to list head used in the program
  * @prefix: string to match in the program
  * @c: the next character after prefix to match
