@@ -13,7 +13,7 @@ char *retrieve_file(info_t *commandInfo)
 
     dir = fetchEnv(commandInfo, "HOME=");
     if (!dir)
-        return (NULL);
+	    return (NULL);
     buf = malloc(sizeof(char) * (str_length(dir) + str_length(HIST_FILE) + 2));
     if (!buf)
         return (NULL);
