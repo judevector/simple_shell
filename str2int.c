@@ -27,7 +27,7 @@ int isDelimiter(char zyk, char *delimiter)
 
 /**
  * isAlphabetic - verifies the presence of alphabetic characters
- * @c: The input character
+ * @cha: The input character
  * Return: 1 if character c is alphabetic and 0 otherwise.
  */
 
