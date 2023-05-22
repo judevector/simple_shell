@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * showHistory - This displays the history list, one command by line, and its preceded
- *              with line numbers, starting at 0.
+ * showHistory - This displays the history list, one command by line,
+ *		and its preceded with line numbers, starting at 0.
  * @commandInfo: information containing potential arguments in the program
  *  Return: Always 0 and 1 if error
  */
