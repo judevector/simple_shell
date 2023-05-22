@@ -9,19 +9,19 @@
 
 char *retrieve_file(info_t *commandInfo)
 {
-    char *buf, *dir;
+char *buf, *dir;
 
-    dir = fetchEnv(commandInfo, "HOME=");
-    if (!dir)
-	    return (NULL);
-    buf = malloc(sizeof(char) * (str_length(dir) + str_length(HIST_FILE) + 2));
-    if (!buf)
-        return (NULL);
-    buf[0] = 0;
-    str_copy(buf, dir);
-    str_concat(buf, "/");
-    str_concat(buf, HIST_FILE);
-    return (buf);
+dir = fetchEnv(commandInfo, "HOME=");
+if (!dir)
+return (NULL);
+buf = malloc(sizeof(char) * (str_length(dir) + str_length(HIST_FILE) + 2));
+if (!buf)
+return (NULL);
+buf[0] = 0;
+str_copy(buf, dir);
+str_concat(buf, "/");
+str_concat(buf, HIST_FILE);
+return (buf);
 }
 
 /**
@@ -31,25 +31,25 @@ char *retrieve_file(info_t *commandInfo)
  */
 int record_history(info_t *commandInfo)
 {
-    ssize_t fd;
-    char *filename = retrieve_file(commandInfo);
-    list_n *node = NULL;
+ssize_t fd;
+char *filename = retrieve_file(commandInfo);
+list_n *node = NULL;
 
-    if (!filename)
-        return (-1);
+if (!filename)
+return (-1);
 
-    fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
-    free(filename);
-    if (fd == -1)
-        return (-1);
-    for (node = commandInfo->history; node; node = node->next)
-    {
-        fdPuts(node->str, fd);
-        fdPrint('\n', fd);
-    }
-    fdPrint(BUF_FLUSH, fd);
-    close(fd);
-    return (1);
+fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
+free(filename);
+if (fd == -1)
+return (-1);
+for (node = commandInfo->history; node; node = node->next)
+{
+fdPuts(node->str, fd);
+fdPrint('\n', fd);
+}
+fdPrint(BUF_FLUSH, fd);
+close(fd);
+return (1);
 }
 
 /**
@@ -60,45 +60,45 @@ int record_history(info_t *commandInfo)
  */
 int get_hist(info_t *commandInfo)
 {
-    int i, last = 0, linecount = 0;
-    ssize_t fd, rlen, fsize = 0;
-    struct stat st;
-    char *buf = NULL, *filename = retrieve_file(commandInfo);
+int i, last = 0, linecount = 0;
+ssize_t fd, rlen, fsize = 0;
+struct stat st;
+char *buf = NULL, *filename = retrieve_file(commandInfo);
 
-    if (!filename)
-        return (0);
+if (!filename)
+return (0);
 
-    fd = open(filename, O_RDONLY);
-    free(filename);
-    if (fd == -1)
-        return (0);
-    if (!fstat(fd, &st))
-        fsize = st.st_size;
-    if (fsize < 2)
-        return (0);
-    buf = malloc(sizeof(char) * (fsize + 1));
-    if (!buf)
-        return (0);
-    rlen = read(fd, buf, fsize);
-    buf[fsize] = 0;
-    if (rlen <= 0)
-        return (free(buf), 0);
-    close(fd);
-    for (i = 0; i < fsize; i++)
-        	if (buf[i] == '\n')
-        	{
-            	buf[i] = 0;
-            	form_history(commandInfo, buf + last, linecount++);
-            	last = i + 1;
-        	}
-    if (last != i)
-        form_history(commandInfo, buf + last, linecount++);
-    free(buf);
-    commandInfo->history_count = linecount;
-    while (commandInfo->history_count-- >= HIST_MAX)
-        eraseNodeAtIndex(&(commandInfo->history), 0);
-    reorder_hist(commandInfo);
-    return (commandInfo->history_count);
+fd = open(filename, O_RDONLY);
+free(filename);
+if (fd == -1)
+return (0);
+if (!fstat(fd, &st))
+fsize = st.st_size;
+if (fsize < 2)
+return (0);
+buf = malloc(sizeof(char) * (fsize + 1));
+if (!buf)
+return (0);
+rlen = read(fd, buf, fsize);
+buf[fsize] = 0;
+if (rlen <= 0)
+return (free(buf), 0);
+close(fd);
+for (i = 0; i < fsize; i++)
+if (buf[i] == '\n')
+{
+buf[i] = 0;
+form_history(commandInfo, buf + last, linecount++);
+last = i + 1;
+}
+if (last != i)
+form_history(commandInfo, buf + last, linecount++);
+free(buf);
+commandInfo->history_count = linecount;
+while (commandInfo->history_count-- >= HIST_MAX)
+eraseNodeAtIndex(&(commandInfo->history), 0);
+reorder_hist(commandInfo);
+return (commandInfo->history_count);
 }
 
 /**
@@ -111,15 +111,15 @@ int get_hist(info_t *commandInfo)
  */
 int form_history(info_t *commandInfo, char *buf, int linecount)
 {
-    list_n *node = NULL;
+list_n *node = NULL;
 
-    if (commandInfo->history)
-        node = commandInfo->history;
-    appendNode(&node, buf, linecount);
+if (commandInfo->history)
+node = commandInfo->history;
+appendNode(&node, buf, linecount);
 
-    if (!commandInfo->history)
-        commandInfo->history = node;
-    return (0);
+if (!commandInfo->history)
+commandInfo->history = node;
+return (0);
 }
 
 /**
@@ -130,14 +130,14 @@ int form_history(info_t *commandInfo, char *buf, int linecount)
  */
 int reorder_hist(info_t *commandInfo)
 {
-    list_n *node = commandInfo->history;
-    int i = 0;
+list_n *node = commandInfo->history;
+int i = 0;
 
-    while (node)
-    {
-        node->num = i++;
-        node = node->next;
-    }
-    return (commandInfo->history_count = i);
+while (node)
+{
+node->num = i++;
+node = node->next;
+}
+return (commandInfo->history_count = i);
 }
 
