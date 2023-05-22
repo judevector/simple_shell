@@ -8,14 +8,14 @@
  */
 int str_length(char *s)
 {
-    int i = 0;
+int i = 0;
 
-    if (!s)
-        return (0);
+if (!s)
+return (0);
 
-    while (*s++)
-        i++;
-    return (i);
+while (*s++)
+i++;
+return (i);
 }
 
 /**
@@ -27,17 +27,17 @@ int str_length(char *s)
  */
 int compareStrings(char *s1, char *s2)
 {
-    while (*s1 && *s2)
-    {
-        if (*s1 != *s2)
-            return (*s1 - *s2);
-        s1++;
-        s2++;
-    }
-    if (*s1 == *s2)
-        return (0);
-    else
-        return (*s1 < *s2 ? -1 : 1);
+while (*s1 && *s2)
+{
+if (*s1 != *s2)
+return (*s1 - *s2);
+s1++;
+s2++;
+}
+if (*s1 == *s2)
+return (0);
+else
+return (*s1 < *s2 ? -1 : 1);
 }
 
 /**
@@ -49,27 +49,26 @@ int compareStrings(char *s1, char *s2)
  */
 char *starts_with(const char *haystack, const char *needle)
 {
-    while (*needle)
-        if (*needle++ != *haystack++)
-            return (NULL);
-    return ((char *)haystack);
+while (*needle)
+if (*needle++ != *haystack++)
+return (NULL);
+return ((char *)haystack);
 }
 
 /**
  * str_concat - This concatenates the two strings
- * @destination: This is the destination buffer in the program 
+ * @destination: This is the destination buffer in the program
  * @src: the source buffer in the program
  * Return: pointer to destination buffer
  */
 char *str_concat(char *destination, char *src)
 {
-    char *ret = destination;
-
-    while (*destination)
-        destination++;
-    while (*src)
-        *destination++ = *src++;
-    *destination = *src;
-    return (ret);
+char *ret = destination;
+while (*destination)
+destination++;
+while (*src)
+*destination++ = *src++;
+*destination = *src;
+return (ret);
 }
 
