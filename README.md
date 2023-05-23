@@ -1,6 +1,6 @@
 ##simple shell project
 
-This is an ALX SWE shell collaboration project between Jude and Daniel
+This is an ALX Software Engineering shell collaboration project between Jude and Daniel
 
 In this project we collaborated in creation of a simple shell terminal
 
