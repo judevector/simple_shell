@@ -6,10 +6,10 @@
  */
 void clear_data(info_t *commandInfo)
 {
-    commandInfo->arg = NULL;
-    commandInfo->argv = NULL;
-    commandInfo->path = NULL;
-    commandInfo->argc = 0;
+	commandInfo->arg = NULL;
+	commandInfo->argv = NULL;
+	commandInfo->path = NULL;
+	commandInfo->argc = 0;
 }
 
 /**
@@ -19,28 +19,27 @@ void clear_data(info_t *commandInfo)
  */
 void set_data(info_t *commandInfo, char **av)
 {
-    int i = 0;
+	int i = 0;
 
-    commandInfo->fileName = av[0];
-    if (commandInfo->arg)
-    {
-        commandInfo->argv = word_split(commandInfo->arg, " \t");
-        	if (!commandInfo->argv)
-        	{
-            	commandInfo->argv = malloc(sizeof(char *) * 2);
-            	if (commandInfo->argv)
-            	{
-                	commandInfo->argv[0] = strdupl(commandInfo->arg);
-                	commandInfo->argv[1] = NULL;
-            	}
-        }
-        	for (i = 0; commandInfo->argv && commandInfo->argv[i]; i++)
-            	;
-        	commandInfo->argc = i;
+	commandInfo->fileName = av[0];
+	if (commandInfo->arg)
+	{
+		commandInfo->argv = word_split(commandInfo->arg, " \t");
+		if (!commandInfo->argv)
+		{
+			commandInfo->argv = malloc(sizeof(char *) * 2);
+			if (commandInfo->argv)
+			{
+				commandInfo->argv[0] = strdupl(commandInfo->arg);
+				commandInfo->argv[1] = NULL;
+			}
+		}
+		for (i = 0; commandInfo->argv && commandInfo->argv[i]; i++);
+		commandInfo->argc = i;
 
-        	resolve_alias(commandInfo);
-        	apply_vars(commandInfo);
-    	}
+		resolve_alias(commandInfo);
+		apply_vars(commandInfo);
+	}
 }
 /**
  * clear_info - frees info_t struct fields used in the command
@@ -49,25 +48,25 @@ void set_data(info_t *commandInfo, char **av)
  */
 void clear_info(info_t *commandInfo, int all)
 {
-    dispose(commandInfo->argv);
-    commandInfo->argv = NULL;
-    commandInfo->path = NULL;
-    if (all)
-    {
-        	if (!commandInfo->cmd_buf)
-            	free(commandInfo->arg);
-        	if (commandInfo->env)
-            	clear_list(&(commandInfo->env));
-        	if (commandInfo->history)
-            	clear_list(&(commandInfo->history));
-        	if (commandInfo->alias)
-            	clear_list(&(commandInfo->alias));
-        	dispose(commandInfo->environ);
-        	commandInfo->environ = NULL;
-        	bufferFree((void **)commandInfo->cmd_buf);
-        	if (commandInfo->readfd > 2)
-           		close(commandInfo->readfd);
-        writeChar(BUF_FLUSH);
-    }
+	dispose(commandInfo->argv);
+	commandInfo->argv = NULL;
+	commandInfo->path = NULL;
+	if (all)
+	{
+		if (!commandInfo->cmd_buf)
+			free(commandInfo->arg);
+		if (commandInfo->env)
+			clear_list(&(commandInfo->env));
+		if (commandInfo->history)
+			clear_list(&(commandInfo->history));
+		if (commandInfo->alias)
+			clear_list(&(commandInfo->alias));
+		dispose(commandInfo->environ);
+		commandInfo->environ = NULL;
+		bufferFree((void **)commandInfo->cmd_buf);
+		if (commandInfo->readfd > 2)
+			close(commandInfo->readfd);
+		writeChar(BUF_FLUSH);
+	}
 }
 
