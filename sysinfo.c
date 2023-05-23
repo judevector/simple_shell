@@ -34,7 +34,8 @@ void set_data(info_t *commandInfo, char **av)
 				commandInfo->argv[1] = NULL;
 			}
 		}
-		for (i = 0; commandInfo->argv && commandInfo->argv[i]; i++);
+		for (i = 0; commandInfo->argv && commandInfo->argv[i]; i++)
+			;
 		commandInfo->argc = i;
 
 		resolve_alias(commandInfo);
