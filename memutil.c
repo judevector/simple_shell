@@ -9,11 +9,11 @@
  */
 char *resetMatrix(char *s, char b, unsigned int n)
 {
-    unsigned int i;
+	unsigned int i;
 
-    for (i = 0; i < n; i++)
-        s[i] = b;
-    return (s);
+	for (i = 0; i < n; i++)
+		s[i] = b;
+	return (s);
 }
 
 /**
@@ -22,13 +22,13 @@ char *resetMatrix(char *s, char b, unsigned int n)
  */
 void dispose(char **pp)
 {
-    char **a = pp;
+	char **a = pp;
 
-    if (!pp)
-        return;
-    while (*pp)
-        free(*pp++);
-    free(a);
+	if (!pp)
+		return;
+	while (*pp)
+		free(*pp++);
+	free(a);
 }
 
 /**
@@ -36,28 +36,27 @@ void dispose(char **pp)
  * @ptr: This pointer to previous mallocated block
  * @prev_size: byte size of previous block
  * @modified_size: The byte size of new block
- *
- * Return: pointer to the old block 
+ * Return: pointer to the old block
  */
 void *reallocate(void *ptr, unsigned int prev_size, unsigned int modified_size)
 {
-    char *p;
+	char *p;
 
-    if (!ptr)
-        return (malloc(modified_size));
-    if (!modified_size)
-        return (free(ptr), NULL);
-    if (modified_size == prev_size)
-        return (ptr);
+	if (!ptr)
+		return (malloc(modified_size));
+	if (!modified_size)
+		return (free(ptr), NULL);
+	if (modified_size == prev_size)
+		return (ptr);
 
-    p = malloc(modified_size);
-    if (!p)
-        return (NULL);
+	p = malloc(modified_size);
+	if (!p)
+		return (NULL);
 
-    prev_size = prev_size < modified_size ? prev_size : modified_size;
-    while (prev_size--)
-        p[prev_size] = ((char *)ptr)[prev_size];
-    free(ptr);
-    return (p);
+	prev_size = prev_size < modified_size ? prev_size : modified_size;
+	while (prev_size--)
+		p[prev_size] = ((char *)ptr)[prev_size];
+	free(ptr);
+	return (p);
 }
 
