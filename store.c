@@ -45,7 +45,8 @@ int verify_chain(info_t *commandInfo, char *buf, size_t *p)
  *
  * Return: Void or NULL
  */
-void test_chain(info_t *commandInfo, char *buf, size_t *p, size_t i, size_t len)
+void test_chain(info_t *commandInfo, char *buf,
+size_t *p, size_t i, size_t len)
 {
 	size_t j = *p;
 
