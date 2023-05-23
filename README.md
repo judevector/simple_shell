@@ -1,1 +1,5 @@
-simple_shell README file
+##simple_shell
+
+This is a shell collaboration project between Jude and Daniel
+
+In this project we collaborated in creation of a simple shell terminal
