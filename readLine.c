@@ -1,19 +1,19 @@
 #include "shell.h"
 
 /**
- * inputBuf - this buffers chained commands
+ * inputBuf - this buffers the  chained commands
  * @commandInfo: parameter or struct info used in shell
  * @buf: address of buffer to receive
  * @length: address of len variable used in shell
  *
- * Return: bytes read if successful
+ * Return: bytes read if successful otherwise NULL
  */
 ssize_t inputBuf(info_t *commandInfo, char **buf, size_t *length)
 {
 ssize_t r = 0;
 size_t len_p = 0;
 
-if (!*length) /* if nothing left in the buffer, fill it */
+if (!*length)
 {
 free(*buf);
 *buf = NULL;
@@ -43,10 +43,10 @@ return (r);
 }
 
 /**
- * read_input - reads the input line minus the newline
- * @commandInfo: parameter or struct info used in the output file
+ * read_input - This reads the input line minus the newline used
+ * @commandInfo: The parameter or struct info used in the output file
  *
- * Return: bytes read after the input line
+ * Return: bytes read after the input line otherwise return nothing
  */
 ssize_t read_input(info_t *commandInfo)
 {
@@ -89,11 +89,11 @@ return (r);
 
 /**
  * get_buf - This reads a buffer in the program
- * @commandInfo: parameter struct
- * @buf: buffer
+ * @commandInfo: The parameter struct or info used
+ * @buf: the buffer used in the program
  * @i: size
  *
- * Return: r
+ * Return: this returns r nothing else
  */
 ssize_t get_buf(info_t *commandInfo, char *buf, size_t *i)
 {
@@ -113,7 +113,7 @@ return (r);
  * @ptr: address of pointer to buffer, preallocated or NULL
  * @length: size of preallocated ptr buffer if not NULL
  *
- * Return: s if successful
+ * Return: s if successful else returns NULL
  */
 int get_line(info_t *commandInfo, char **ptr, size_t *length)
 {
@@ -156,9 +156,9 @@ return (s);
 
 /**
  * sigintAction - blocks ctrl-C
- * @sig_num: the signal number
- *
- * Return: void
+ * @sig_num: the signal number used in the program 
+ *u
+ * Return: void or NULL
  */
 void sigintAction(__attribute__((unused)) int sig_num)
 {
