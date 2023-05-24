@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * hsh - main shell loop
+ * hsh - The main shell loop that controls the code
  * @commandInfo: the parameter & return info struct used in the shell
  * @av: the argument vector from main() used in the shell
- * Return: 0 on success, 1 on error, or error code
+ * Return: 0 on success, 1 on error, or otherwise other error code
  */
 int hsh(info_t *commandInfo, char **av)
 {
@@ -43,10 +43,10 @@ int hsh(info_t *commandInfo, char **av)
 }
 
 /**
- * detect_builtin - This detects a builtin command
- * @commandInfo: the parameter & return info struct
+ * detect_builtin - This detects a builtin command in the program
+ * @commandInfo: the parameter & return info struct used in this program
  *
- * Return: -1 if builtin not found,
+ * Return: This will return -1 if builtin not found,
  * 0 if builtin was executed successfully,
  * 1 if builtin was found but not successful,
  * 2 if builtin has signals exit()
@@ -76,9 +76,9 @@ int detect_builtin(info_t *commandInfo)
 }
 
 /**
- * detect_cmd - This detects a command in PATH
- * @commandInfo: the parameter & return info struct
- * Return: void or null
+ * detect_cmd - This detects a command in PATH in the shell
+ * @commandInfo: the parameter & return info struct used in the code
+ * Return: This returns void or null whe run
  */
 void detect_cmd(info_t *commandInfo)
 {
@@ -120,7 +120,7 @@ void detect_cmd(info_t *commandInfo)
  * spawn_cmd - This forks a an exec thread to run command
  * @commandInfo: the parameter & return commandInfo struct used in the program
  *
- * Return: void or null
+ * Return: This returns void or nul in the program
  */
 void spawn_cmd(info_t *commandInfo)
 {
