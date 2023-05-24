@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * showHistory - This displays the history list, one command by line,
- *		and its preceded with line numbers, starting at 0.
+ * showHistory - This shows the history list in the program,
+ *	one line by command and it will be preceded with numbers, starting at 0.
  * @commandInfo: information containing potential arguments in the program
  *  Return: Always 0 and 1 if error
  */
@@ -13,10 +13,10 @@ int showHistory(info_t *commandInfo)
 }
 
 /**
- * removeAlias - this sets the alias to string
- * @commandInfo: parameter or information about the command
+ * removeAlias - this removes the alias and set to string
+ * @commandInfo: The parameter or information about the command
  * @str: the string alias used to identify the command
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on success, 1 on error if otherwise
  */
 int removeAlias(info_t *commandInfo, char *str)
 {
@@ -35,9 +35,9 @@ int removeAlias(info_t *commandInfo, char *str)
 }
 
 /**
- * addAlias - sets alias to string
- * @commandInfo: parameter or information about the command
- * @str: the string alias
+ * addAlias - This add an alias to a string
+ * @commandInfo: The parameter or information about the command
+ * @str: the string alias used in the program
  *
  * Return: Always 0 on success, 1 on error
  */
@@ -56,7 +56,7 @@ int addAlias(info_t *commandInfo, char *str)
 }
 
 /**
- * showAlias - This shows the alias string
+ * showAlias - This shows the alias string in the program
  * @node: the alias node used to create the command
  *
  * Return: Always 0 on success and 1 if an error
@@ -80,8 +80,8 @@ int showAlias(list_n *node)
 
 /**
  * manageAlias - This manages and mimics the alias builtin (man alias)
- * @commandInfo: parameter or information about the command
- *  Return: Always 0 and 1 for success
+ * @commandInfo: The parameter or information about the command
+ *  Return: Always 0 and 1 for error
  */
 int manageAlias(info_t *commandInfo)
 {
