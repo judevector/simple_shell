@@ -25,7 +25,7 @@ return (buf);
 }
 
 /**
- * record_history - creates a file, or appends to an existing file
+ * record_history - This creates a file and appends it to an existing file
  * @commandInfo: the parameter struct or information struct
  * Return: 1 on success, else otherwise -1
  */
@@ -102,12 +102,12 @@ return (commandInfo->history_count);
 }
 
 /**
- * form_history - adds entry to a history linked list
+ * form_history - This adds entry to a history linked list in the program
  * @commandInfo: Structure containing potential arguments. Used to maintain
- * @buf: buffer
- * @linecount: the history linecount, history_count
+ * @buf: buffer used in the program
+ * @linecount: the history linecount, history count in the program
  *
- * Return: Always 0
+ * Return: Always 0 else return NULL or 1
  */
 int form_history(info_t *commandInfo, char *buf, int linecount)
 {
@@ -126,7 +126,7 @@ return (0);
  * reorder_hist - renumbers the history linked list after changes
  * @commandInfo: Structure containing potential arguments. Used in the code
  *
- * Return: the new history_count
+ * Return: the new history_count in the program
  */
 int reorder_hist(info_t *commandInfo)
 {
