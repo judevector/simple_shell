@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * verify_chain - This test if current char in buffer is a chain delimeter
- * @commandInfo: the parameter struct used in the code
+ * verify_chain - This verify if current char in buffer is a chain delimeter
+ * @commandInfo: the parameter struct used in the program
  * @buf: the char buffer used in the code
  * @p: address of current position in buf
  *
@@ -140,11 +140,11 @@ int apply_vars(info_t *commandInfo)
 }
 
 /**
- * replace_string - This replaces the string
+ * replace_string - This replaces the string in the program
  * @old: The address of old string used in the program
- * @new: The new string used
+ * @new: The new string used in the program
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: 1 if replaced, else otherwise 0
  */
 int replace_string(char **old, char *new)
 {
