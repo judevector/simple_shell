@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * get_length - determines length of linked list in the program
- * @h: pointer to first node in linked list
+ * get_length - This determines the length of linked list in the program
+ * @h: The pointer to first node in linked list
  *
- * Return: size of list in bytes
+ * Return: The size of list in bytes
  */
 size_t get_length(const list_n *h)
 {
@@ -78,12 +78,12 @@ size_t listPrint(const list_n *h)
 }
 
 /**
- * startsWith - The string starts with prefix in the command
- * @node: pointer to list head used in the program
- * @prefix: string to match in the program
- * @c: the next character after prefix to match
+ * startsWith - This string starts with prefix in the command
+ * @node: The pointer to list head used in the program
+ * @prefix: The string to match in the program when running
+ * @c: the next character after prefix used in the function
  *
- * Return: match node or null
+ * Return: This returns a match node or null
  */
 list_n *startsWith(list_n *node, char *prefix, char c)
 {
@@ -100,11 +100,11 @@ list_n *startsWith(list_n *node, char *prefix, char c)
 }
 
 /**
- * findNodeIndex - gets the first index of a node
- * @header: This is the pointer to list head
- * @node: This is the pointer to the node
+ * findNodeIndex - This gets the first index of a node in the command
+ * @header: This is the pointer to list head in the program
+ * @node: This is the pointer to the node usded in the code
  *
- * Return: index of node or -1 else otherwise.
+ * Return: This is the index of node returns -1 or else otherwise.
  */
 ssize_t findNodeIndex(list_n *header, list_n *node)
 {
