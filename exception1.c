@@ -49,7 +49,7 @@ void printErr(info_t *commandInfo, char *err_string)
 /**
  * display_d - This function displays a decimal (integer) number (base 10)
  * @input: the input used to generate the decimal
- * @fd: the file descriptor used to write to the output
+ * @fd: the file descriptor used to write to the output in the program
  *
  * Return: number of characters printed
  */
@@ -86,12 +86,12 @@ int display_d(int input, int fd)
 }
 
 /**
- * convertNum - This is the converter function, a clone of itoa
- * @number: number used to convert
- * @base: base used to convert
+ * convertNum - This is the function that converts ,itoa's clone
+ * @number: The number used to make the convertion
+ * @base: base upon which the convertion is made
  * @flags: argument flags used in the conversion
  *
- * Return: it returns string
+ * Return: it returns string else NULL
  */
 char *convertNum(long int number, int base, int flags)
 {
@@ -124,7 +124,7 @@ char *convertNum(long int number, int base, int flags)
  * strip_comments - this function replaces first instance of '#' with '\0'
  * @buf: address of the string to modify
  *
- * Return: Always 0;
+ * Return: Always 0 else null;
  */
 void strip_comments(char *buf)
 {
