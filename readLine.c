@@ -156,8 +156,8 @@ return (s);
 
 /**
  * sigintAction - blocks ctrl-C
- * @sig_num: the signal number used in the program 
- *u
+ * @sig_num: the signal number is used in the program
+ * u
  * Return: void or NULL
  */
 void sigintAction(__attribute__((unused)) int sig_num)
